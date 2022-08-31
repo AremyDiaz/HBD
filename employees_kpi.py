@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import plotly.express as px
+import plotly.express as px #para gráficas
 
 
 #--- IMPORT DATA ---#
@@ -9,25 +9,25 @@ df=pd.read_csv("employee_data.csv")
 
 #--- PAGE CONFIG ---#
 st.set_page_config(page_title="Socialize your Knowledge",
-                   page_icon=":busts_in_silhouette:")
+                   page_icon=":busts_in_silhouette:") #set_page_config: permite que la pestaña tenga nombre y logo
 
 st.title("Socialize your Knowledge")
 st.markdown("_Site that would help and make easier for us to analyze the performance of Socialize your Knowledge employees_")
 
 #--- LOGO ---#
-st.sidebar.image("waveslogo.jpg")
-st.sidebar.markdown("##")
+st.sidebar.image("tec-de-monterrey-logo.jpeg") #Imagen en sidebar
+st.sidebar.markdown("##") #Es como un Enter
 
 #--- SIDEBAR FILTERS ---#
 
 gender = st.sidebar.multiselect("Select Gender",
                                 options=df['gender'].unique(),
-                                default=df['gender'].unique())
+                                default=df['gender'].unique()) #Multiselect permite seleccionar más de uno a la vez
 st.sidebar.markdown("##")
 
 performance_score= st.sidebar.multiselect("Select the Performance Score",
                                           options=df['performance_score'].unique(),
-                                          default=df['performance_score'].unique())
+                                          default=df['performance_score'].unique()) #options es los valores permitidos, default los que queremos que aparezcan sin decirle.
 st.sidebar.markdown("##")
 
 marital_status= st.sidebar.multiselect("Select Marital Status",
@@ -35,7 +35,7 @@ marital_status= st.sidebar.multiselect("Select Marital Status",
                                        default=df['marital_status'].unique())
 
 df_selection=df.query(
-    "gender == @gender & performance_score == @performance_score & marital_status == @marital_status")
+    "gender == @gender & performance_score == @performance_score & marital_status == @marital_status") #query: atributos del dataframe contra los seleccionados, da los resultados sin confirmarle con enter ni clicks
 
 #--- CHARTS ---#
 
